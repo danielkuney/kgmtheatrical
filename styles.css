@@ -1,0 +1,45 @@
+body 	{font-family: "Helvetica Light", sans-serif;
+		font-weight: 400;
+		  padding: 2em 2em 5em 2em;
+  		max-width: 55em !important;
+  		line-height: 1;
+  		font-size: 0.95rem;
+
+}
+
+h1 {
+  color: black;
+  font-family: "Helvetica Light", sans-serif;
+  font-style: normal;
+  font-size: 1em;
+}
+
+h2 {
+  color: black;
+  font-family: "Helvetica Light", sans-serif;
+  font-style: normal;
+  font-size: 1em;
+}
+
+
+
+p 		{color: #555;
+}
+
+
+}
+
+hr		{color: gray
+}
+
+li		{color: #555;
+
+}
+
+#articles {border-style: solid;
+		  border-width: thin;
+		  border-color: gray;
+		  padding-left: 1em;
+		  padding-top: 0.25em;
+		  padding-bottom: 0.25em;
+}
