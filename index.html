@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Kuney — KGM Theatrical</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-mid: #4a4a46;
+    --ink-light: #8a8a84;
+    --paper: #f7f5f0;
+    --paper-warm: #eeece6;
+    --rule: #d4d0c8;
+    --accent: #b8310f;
+    --font-serif: 'EB Garamond', Georgia, serif;
+    --font-mono: 'DM Mono', 'Courier New', monospace;
+    --max: 680px;
+    --pad: 2rem;
+  }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-serif);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Layout ── */
+  .site {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 4rem var(--pad) 6rem;
+  }
+
+  /* ── Nav ── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.25rem;
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    padding-top: 1.25rem;
+    margin-top: -1.25rem;
+    z-index: 10;
+  }
+
+  .nav-name {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── Hero ── */
+  .hero {
+    margin-bottom: 4rem;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 155px;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .hero-photo {
+    width: 100%;
+    display: block;
+    filter: grayscale(100%);
+    opacity: 0.88;
+  }
+
+  .hero-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.75rem;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-body {
+    font-size: 1.05rem;
+    color: var(--ink-mid);
+    max-width: 560px;
+    line-height: 1.75;
+  }
+
+  .hero-body p + p { margin-top: 1rem; }
+
+  /* ── Divider ── */
+  .rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 3rem 0;
+  }
+
+  /* ── Section labels ── */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Writing section ── */
+  .writing-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .writing-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.1s;
+  }
+
+  .writing-item:first-child { border-top: 1px solid var(--rule); }
+
+  .writing-item:hover .writing-title { color: var(--accent); }
+
+  .writing-title {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--ink);
+    transition: color 0.15s;
+    line-height: 1.4;
+  }
+
+  .writing-pub {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ── Coming Soon tag ── */
+  .tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--accent);
+    padding: 0.15rem 0.45rem;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+    position: relative;
+    top: -1px;
+  }
+
+  /* ── Shows ── */
+  .shows-grid {
+    columns: 2;
+    column-gap: 2rem;
+    list-style: none;
+  }
+
+  .shows-grid li {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    padding: 0.3rem 0;
+    break-inside: avoid;
+    border-bottom: 1px solid var(--paper-warm);
+  }
+
+  /* ── Contact block ── */
+  .contact-block {
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    padding: 2rem 2.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .contact-block p {
+    font-size: 1rem;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+
+  .contact-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ink);
+    text-decoration: none;
+    padding: 0.7rem 1.4rem;
+    transition: background 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--accent); }
+
+  .btn-secondary {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.1rem;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-name {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-links a:hover { color: var(--ink); }
+
+  @media (max-width: 520px) {
+    .site { padding-top: 2rem; }
+    h1 { font-size: 1.9rem; }
+    .shows-grid { columns: 1; }
+    nav { flex-direction: column; gap: 0.5rem; margin-bottom: 2.5rem; }
+    .contact-actions { flex-direction: column; align-items: flex-start; }
+    .hero-inner {
+      display: block;
+    }
+    .hero-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 1.5rem 0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="site">
+
+  <nav>
+    <a class="nav-name" href="/">Daniel Kuney / KGM Theatrical</a>
+    <ul class="nav-links">
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#shows">Shows</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-label">General Manager — New York</p>
+    <div class="hero-inner">
+      <div>
+        <h1>Broadway is changing.<br><em>Someone should say so.</em></h1>
+        <div class="hero-body">
+          <p>I'm Daniel Kuney. I've spent more than two decades managing Broadway and Off-Broadway productions — the budgets, the contracts, the opening nights, and the weeks that don't go as planned.</p>
+        </div>
+      </div>
+      <img class="hero-photo" src="daniel kuney headshot.jpeg" alt="Daniel Kuney">
+    </div>
+    <div class="hero-body" style="margin-top: 1rem;">
+      <p>I take on a small number of projects at a time, and I work them myself. If you hire me, you get me — not a junior staff member working from my notes. I've chosen to work this way because I think it produces better outcomes for my clients. A general manager who knows your show as well as you do is worth more than a firm that manages forty shows at once.</p>
+      <p>I also write, because I think this industry benefits from people who will say hard things clearly.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="writing" style="margin-bottom: 3rem;">
+    <p class="section-label">Recent Writing</p>
+    <ul class="writing-list" id="writing-list">
+      <li><a class="writing-item" href="#"><span class="writing-title" style="color:var(--ink-light);">Loading recent posts…</span><span class="writing-pub"></span></a></li>
+    </ul>
+  </section>
+
+  <section id="shows" style="margin-bottom: 3rem;">
+    <p class="section-label">Selected Productions</p>
+    <ul class="shows-grid">
+      <li>Drag The Musical</li>
+      <li>Half Man Half Bull</li>
+      <li>Frida</li>
+      <li>Reverb <span class="tag">Coming Soon</span></li>
+      <li>Rutka</li>
+      <li>Heathers</li>
+      <li>Rock of Ages</li>
+      <li>Slava's Snowshow</li>
+      <li>Heartbreak Hotel</li>
+      <li>Puffs</li>
+      <li>Cleopatra</li>
+      <li>Rolling Thunder</li>
+      <li>Hard Road to Heaven <span class="tag">Coming Soon</span></li>
+      <li>Fly More Than You Fall</li>
+      <li>Stalker</li>
+      <li>Asi Wind's Inner Circle</li>
+    </ul>
+  </section>
+
+  <hr class="rule">
+
+  <section id="contact">
+    <p class="section-label">Work Together</p>
+    <div class="contact-block">
+      <p>I have room for one, maybe two new projects a year, and I'm not looking to fill those slots quickly.</p>
+      <p>If you're serious about producing, I'd like to hear from you.</p>
+      <div class="contact-actions">
+        <a class="btn-primary" id="contact-btn" href="#">Work with Me</a>
+        <a class="btn-secondary" href="https://kgmtheatrical.substack.com" target="_blank">Follow the Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-name">KGM Theatrical &mdash; New York, NY</span>
+    <ul class="footer-links">
+      <li><a href="https://kgmtheatrical.substack.com">Substack</a></li>
+      <li><a href="https://www.focustools.xyz">Focus Tools</a></li>
+      <li><a href="https://www.linkedin.com/in/danielkuney/">LinkedIn</a></li>
+    </ul>
+  </footer>
+
+</div>
+
+<script>
+(async function () {
+  const feeds = [
+    { url: '/feed/kgm',        pub: 'KGM Newsletter' },
+    { url: '/feed/focustools', pub: 'Focus Tools' }
+  ];
+
+  const posts = [];
+
+  await Promise.all(feeds.map(async ({ url, pub }) => {
+    try {
+      const res = await fetch(url);
+      const xml = new DOMParser().parseFromString(await res.text(), 'text/xml');
+      xml.querySelectorAll('item').forEach(item => {
+        const linkEl = item.querySelector('link');
+        const link = linkEl ? (linkEl.textContent.trim() || linkEl.nextSibling?.nodeValue?.trim() || '#') : '#';
+        posts.push({
+          title: item.querySelector('title').textContent.trim(),
+          link,
+          date: new Date(item.querySelector('pubDate').textContent),
+          pub
+        });
+      });
+    } catch (e) {}
+  }));
+
+  posts.sort((a, b) => b.date - a.date);
+
+  const list = document.getElementById('writing-list');
+  list.innerHTML = '';
+
+  posts.slice(0, 7).forEach(post => {
+    const li  = document.createElement('li');
+    const a   = document.createElement('a');
+    a.className = 'writing-item';
+    a.href      = post.link;
+    a.target    = '_blank';
+    a.rel       = 'noopener noreferrer';
+
+    const title = document.createElement('span');
+    title.className   = 'writing-title';
+    title.textContent = post.title;
+
+    const pub = document.createElement('span');
+    pub.className   = 'writing-pub';
+    pub.textContent = post.pub;
+
+    a.appendChild(title);
+    a.appendChild(pub);
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+}());
+
+// Email obfuscation — assembled at runtime so bots can't scrape it from source
+document.getElementById('contact-btn').href = 'mailto:' + 'daniel' + '\u0040' + 'kgmtheatrical' + '.' + 'com';
+</script>
+
+</body>
+</html>
